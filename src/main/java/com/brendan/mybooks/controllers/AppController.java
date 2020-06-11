@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -39,6 +40,31 @@ public class AppController {
 		return "redirect:/";
 		
 	}
-
 	
+	
+	@GetMapping("book/{book_id}")
+	public String findOne(@PathVariable("book_id") Long id, Model model) {
+		model.addAttribute("book", bookService.findById(id));
+		return "show.jsp";
+	}
+	
+	@PostMapping("delete/book/{book_id}")
+	public String delete(@PathVariable("book_id") Long id) {
+		bookService.delete(id);
+		return "redirect:/";
+	}
+	
+	@GetMapping("edit/book/{book_id}")
+	public String showEdit(@PathVariable("book_id") Long id, Model model) {
+		Book book = bookService.findById(id);
+		model.addAttribute("book", book);
+		return "edit.jsp";
+	}
+	
+	@PostMapping("edit/book/{book_id}")
+	public String edit(@PathVariable("book_id") Long id, @Valid @ModelAttribute("book") Book book, BindingResult result) {
+		Book editedBook = bookService.editBook(book);
+		
+		return "redirect:/";
+	}
 }

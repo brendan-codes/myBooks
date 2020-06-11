@@ -10,12 +10,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-	<h1>Hello World!</h1>
+	<h1>Hello this is <c:out value="${book.name}"></c:out></h1>
 	
-	<form:form action="/book" method="POST" modelAttribute="bookObject">
+	<form:form action="/edit/book/${book.id}" method="POST" modelAttribute="book">
 		<div>
-			<form:errors path="bookObject.*"></form:errors>
+			<form:errors path="book.*"></form:errors>
 		</div>
 		<div>
 			<form:label path="name"></form:label>
@@ -23,14 +22,8 @@
 			<form:input path="name"></form:input>
 		</div>
 		<p>
-			<button type="submit">Create book!</button>
+			<button type="submit">Edit book!</button>
 		</p>
 	</form:form>
-	<c:forEach items="${allBooks}" var="books">
-		<p><c:out value="${books.id}"></c:out></p>
-		<p><c:out value="${books.name}"></c:out></p>
-		<a href="/book/${books.id}">Show this book!</a>
-	</c:forEach>
-	
 </body>
 </html>

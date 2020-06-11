@@ -1,6 +1,7 @@
 package com.brendan.mybooks.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,4 +26,24 @@ public class BookService {
     	System.out.println(book.getName());
         return bookRepository.save(book);
     }
+    
+    public Book editBook(Book book) {
+    	return bookRepository.save(book);
+    }
+    
+    
+    public Book findById(Long id) {
+    	Optional<Book> book = bookRepository.findById(id);
+    	
+    	if(book.isPresent()) {
+    		return book.get();
+    	} else {
+    		return null;
+    	}
+    }
+    
+    public void delete(Long id) {
+    	bookRepository.deleteById(id);
+    }
+    
 }
