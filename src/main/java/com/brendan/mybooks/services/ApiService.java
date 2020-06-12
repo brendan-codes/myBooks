@@ -6,8 +6,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.brendan.mybooks.models.Author;
 import com.brendan.mybooks.models.Book;
 import com.brendan.mybooks.models.Library;
+import com.brendan.mybooks.repositories.AuthorRepository;
 import com.brendan.mybooks.repositories.BookRepository;
 import com.brendan.mybooks.repositories.LibraryRepository;
 
@@ -20,13 +22,8 @@ public class ApiService {
 	@Autowired
 	private LibraryRepository libraryRepo;
 	
-	public Library createLibrary(Library library) {
-		return libraryRepo.save(library);
-	}
-	
-	public List<Library> allLibraries(){
-		return libraryRepo.findAll();
-	}
+	@Autowired
+	private AuthorRepository authorRepo;
 
     
     // returns all the books
@@ -45,7 +42,7 @@ public class ApiService {
     }
     
     
-    public Book findById(Long id) {
+    public Book findBookById(Long id) {
     	Optional<Book> book = bookRepository.findById(id);
     	
     	if(book.isPresent()) {
@@ -55,8 +52,60 @@ public class ApiService {
     	}
     }
     
-    public void delete(Long id) {
+    public void deleteBook(Long id) {
     	bookRepository.deleteById(id);
     }
+    
+    
+    
+    
+	public Library createLibrary(Library library) {
+		return libraryRepo.save(library);
+	}
+	
+	public List<Library> allLibraries(){
+		return libraryRepo.findAll();
+	}
+	
+	public Library findLibraryById(Long id) {
+		Optional<Library> library = libraryRepo.findById(id);
+		
+		if(library.isPresent()) {
+			return library.get();
+		} else {
+			return null;
+		}
+	}
+	
+   public void deleteLibrary(Long id) {
+    	libraryRepo.deleteById(id);
+    }
+    
+   
+    
+    
+	public Author createAuthor(Author author) {
+		return authorRepo.save(author);
+	}
+	
+	public List<Author> allAuthors(){
+		return authorRepo.findAll();
+	}
+	
+	public Author findAuthorById(Long id) {
+		Optional<Author> author = authorRepo.findById(id);
+		
+		if(author.isPresent()) {
+			return author.get();
+		} else {
+			return null;
+		}
+	}
+	
+    public void deleteAuthor(Long id) {
+    	authorRepo.deleteById(id);
+    }
+    
+    
     
 }

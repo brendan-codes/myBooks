@@ -11,17 +11,23 @@
 </head>
 <body>
 
-	<h1>Hello World!</h1>
+	<h1>Create a book!</h1>
+	<a href="/library">Create a library</a> | <a href="/author">Create an author!</a>
 	
 	<form:form action="/book" method="POST" modelAttribute="bookObject">
 		<div>
 			<form:errors path="bookObject.*"></form:errors>
 		</div>
+		<p>Name:</p>
 		<div>
 			<form:label path="name"></form:label>
 			<form:errors path="name"></form:errors>
 			<form:input path="name"></form:input>
 		</div>
+		<p>Library:</p>
+		<select name="" id="">
+			<option value="" disabled>Library</option>
+		</select>
 		<p>
 			<button type="submit">Create book!</button>
 		</p>
