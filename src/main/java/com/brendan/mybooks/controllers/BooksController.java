@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.brendan.mybooks.models.Book;
-import com.brendan.mybooks.services.BookService;
+import com.brendan.mybooks.services.ApiService;
 
 @RestController
 public class BooksController {
-	private BookService bookService;
+	private ApiService bookService;
 	
-    public BooksController(BookService bookService){
+    public BooksController(ApiService bookService){
         this.bookService = bookService;
     }
     

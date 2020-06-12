@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.brendan.mybooks.models.Book;
-import com.brendan.mybooks.services.BookService;
+import com.brendan.mybooks.services.ApiService;
 
 @Controller
 @RequestMapping("/")
 public class AppController {
 	
 	@Autowired
-	private BookService bookService;
+	private ApiService bookService;
 	
 	@GetMapping("")
 	public String index(Model model, @ModelAttribute("bookObject") Book book) {

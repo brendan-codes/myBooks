@@ -7,13 +7,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.brendan.mybooks.models.Book;
+import com.brendan.mybooks.models.Library;
 import com.brendan.mybooks.repositories.BookRepository;
+import com.brendan.mybooks.repositories.LibraryRepository;
 
 @Service
-public class BookService {
+public class ApiService {
 
 	@Autowired
     private BookRepository bookRepository;
+	
+	@Autowired
+	private LibraryRepository libraryRepo;
+	
+	public Library createLibrary(Library library) {
+		return libraryRepo.save(library);
+	}
+	
+	public List<Library> allLibraries(){
+		return libraryRepo.findAll();
+	}
 
     
     // returns all the books
