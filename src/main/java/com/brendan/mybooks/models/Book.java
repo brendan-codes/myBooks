@@ -43,7 +43,7 @@ public class Book {
 	
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(
-			name = "books_authors",
+			name = "authors_books",
 			joinColumns = @JoinColumn(name = "book_id"),
 			inverseJoinColumns = @JoinColumn(name = "author_id")
 			
@@ -53,6 +53,8 @@ public class Book {
 	
     public Book() {
     }
+    
+    
     public Book(String name) {
         this.name = name;
     }
@@ -91,6 +93,28 @@ public class Book {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+
+
+	public Library getLibrary() {
+		return library;
+	}
+
+
+	public void setLibrary(Library library) {
+		this.library = library;
+	}
+
+
+	public List<Author> getAuthors() {
+		return authors;
+	}
+
+
+	public void setAuthors(List<Author> authors) {
+		this.authors = authors;
+	}
+	
+	
 	
 	
 }

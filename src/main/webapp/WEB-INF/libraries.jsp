@@ -35,6 +35,9 @@
 		<br>
 		<p>name: <c:out value="${library.name}"></c:out></p>
 		<p>location: <c:out value="${library.location}"></c:out></p>
+		<c:forEach items="${library.books}" var="oneBook">
+			<p>book name: <c:out value="${oneBook.name}"></c:out></p>
+		</c:forEach>
 		<form action="delete/library/${library.id}" method="POST">
 			<button type="submit">Delete Library</button>
 		</form>

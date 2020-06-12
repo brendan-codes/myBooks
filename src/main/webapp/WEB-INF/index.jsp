@@ -24,10 +24,20 @@
 			<form:errors path="name"></form:errors>
 			<form:input path="name"></form:input>
 		</div>
+		
 		<p>Library:</p>
-		<select name="" id="">
-			<option value="" disabled>Library</option>
-		</select>
+		<div>
+			<form:label path="library"></form:label>
+			<form:errors path="library"></form:errors>
+			<form:select path="library">
+				<option value="" disabled selected>Select a library</option>
+				<c:forEach items="${libraries}" var="l">
+					<form:option value="${l.id}">
+						<c:out value="${l.name}"></c:out>
+					</form:option>
+				</c:forEach>
+			</form:select>
+		</div>
 		<p>
 			<button type="submit">Create book!</button>
 		</p>
