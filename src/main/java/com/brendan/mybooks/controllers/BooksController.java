@@ -1,5 +1,7 @@
 package com.brendan.mybooks.controllers;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.brendan.mybooks.models.Author;
 import com.brendan.mybooks.models.Book;
 import com.brendan.mybooks.services.ApiService;
 
@@ -49,8 +53,10 @@ public class BooksController {
 	}
 	
 	@PostMapping("/book/addAuthor/{book_id}")
-	public String addAuthor(@PathVariable("book_id") Long id, @Valid @ModelAttribute("book") Book book, BindingResult result) {
-		
+	public String addAuthor(@PathVariable("book_id") Long bookId, @RequestParam(value="author") Long authorId) {
+		Book book = apiService.findBookById(bookId);
+		Author author = apiService.findAuthorById(authorId);
+		book.getAuthors().add(author);
 		apiService.editBook(book);
 		return "redirect:/";
 	}

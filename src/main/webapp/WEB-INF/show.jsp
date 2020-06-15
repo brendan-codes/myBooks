@@ -16,7 +16,7 @@
 	<p><c:out value="${book.id}"></c:out></p>
 	
 	
-	<form:form action="/book/addAuthor/${book.id}" method="post" modelAttribute="bookObject">
+<%-- 	<form:form action="/book/addAuthor/${book.id}" method="post" modelAttribute="bookObject">
 		<div>
 			Select an author:
 			<form:label path="authors"></form:label>
@@ -33,7 +33,21 @@
 		<p>
 			<button type="submit">Add author to book!</button>
 		</p>
-	</form:form>
+	</form:form> --%>
+	
+	<form action="/book/addAuthor/${book.id}" method="post">
+		Select an author:
+		<select name="author">
+			<c:forEach items="${authors}" var="a">
+				<option value="${a.id}">
+					<c:out value="${a.name}"></c:out>
+				</option>
+			</c:forEach>
+		</select>
+		<p>
+			<button type="submit">Add author</button>
+		</p>
+	</form>
 	
 	<form:form action="/delete/book/${book.id}" method="POST">
 	
